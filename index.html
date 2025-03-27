@@ -38,13 +38,13 @@
     <div class="mapper no-padding">
       <div id="map" class="map">
 
-      	<div id="download_icon"><a href="#" target="_blank"> <img src="img/download_icon.png"></a></div>
+      	<div id="download_icon"><a href="https://github.com/landbigdata/MapChina/archive/refs/heads/main.zip" target="_blank"> <img src="img/download_icon.png" width="44" height="50"></a></div>
 
 	<div id="homepage"><a href="https://landbigdata.github.io/cscproject/" target="_blank"><img src="img/homepage.png"></a></div>
 
 	<div id="revolvermaps"><img src="https://rf.revolvermaps.com/w/3/s/a/0/33/0/ffffff/010020/aa0000/5u0yvc9fwb5.png"></div>
 
-	    <div class="btn-group" style="z-index: 1001"> <!-- Use 401 to be between map and controls -->
+	    <div class="btn-group" style="z-index: 1001">
 		</div>
 	  </div>
       	<div id="logo"><img src="img/logo.png"></div>
@@ -71,7 +71,7 @@ function zoomTo(arg) {
 
 <div class='map-overlay-left' id="exmpl">
         <div class='map-overlay-inner'>
-            <div><u>放大到制定区域:</u></br>
+            <div><u>放大到指定区域:</u></br>
 				<img src="img/ex1.png" onClick="zoomTo('ex1')"><br>
 				<img src="img/ex2.png" onClick="zoomTo('ex2')"><br>		
 				<img src="img/ex3.png" onClick="zoomTo('ex3')"><br>
@@ -91,20 +91,19 @@ function zoomTo(arg) {
             		tms: false,
           		attribution: 'OpenStreetMap'
 			});
-
        var bright_basemap = L.tileLayer('https://tile.jawg.io/jawg-light/{z}/{x}/{y}.png?access-token=husKPovN2ju7MHnvcylZj55yt4MlLylmlIqugjh6M4i46rQzm9aJpLjxlnIvSadp', {
 				minZoom: 3,
           		maxZoom: 10,
           		tms: false,
           		attribution: 'OpenStreetMap'
 			});
+
        var ESRI = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 				minZoom: 3,
           		maxZoom: 10,
           		tms: false,
           		attribution: 'ESRI'
 			});
-
         var MapChina = L.tileLayer('map/china/{z}/{x}/{y}.png', {
           		minZoom: 3,
           		maxZoom: 10,
@@ -118,8 +117,8 @@ function zoomTo(arg) {
 	});
 
 	var base_Layers = {
-			"问题地图（暗色调）": dark_basemap,
-			"问题地图（亮色调）": bright_basemap			
+			"问题地图示例（暗色调）": dark_basemap,
+			"问题地图示例（亮色调）": bright_basemap			
 	};
 
 	var MapChina_Layers = {
@@ -146,22 +145,24 @@ function zoomTo(arg) {
             }).addTo(map);
 
  	var img = document.createElement("img");
-	img.src = "img/legend.png";
+		img.src = "img/legend.png";
 	var src = document.getElementById("x");
-	legend.appendChild(img);
+		legend.appendChild(img);
 
 	var closeButton = document.createElement('div');
-	closeButton.className = 'cB';
-	legend.appendChild(closeButton);
+		closeButton.className = 'cB';
+		legend.appendChild(closeButton);
+
 	closeButton.onclick = function() {
-	document.getElementById("legend").style.visibility = 'hidden';
-	document.getElementById("showLegend").style.visibility = 'visible';
+		document.getElementById("legend").style.visibility = 'hidden';
+		document.getElementById("showLegend").style.visibility = 'visible';
  	}
 
 	document.getElementById("showLegend").onclick = function() {
-	document.getElementById("legend").style.visibility = 'visible';
-	document.getElementById("showLegend").style.visibility = 'hidden';
+		document.getElementById("legend").style.visibility = 'visible';
+		document.getElementById("showLegend").style.visibility = 'hidden';
 	}
+
   </script>
 </body>
 </html>
