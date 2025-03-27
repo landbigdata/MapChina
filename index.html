@@ -1,0 +1,167 @@
+<html lang="en">
+<head>
+  <title>MapChina</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+    body {
+       margin: 0;
+       padding: 0;
+    }
+    html, body, #map{
+       width: 100%;
+       height: 100%;
+    }
+    </style>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/leaflet.css">
+  <!--鹰眼控件样式-->
+  <link href="css/Control.MiniMap.css" rel="stylesheet" />
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src='js/mapbox.js'></script>
+  <script src="js/easy-button.js"></script>
+  <script src="js/leaflet.ajax.min.js"></script>
+  <script src="js/styles.js"></script>
+  <!--leaflet原生库+Zondy库-->
+  <script src="js/webclient-leaflet-framework.min.js"></script>
+  <!--鹰眼控件扩展库-->
+  <script src="js/Control.MiniMap.js"></script>
+
+</head>
+<body>
+    <div class="mapper no-padding">
+      <div id="map" class="map">
+
+      	<div id="download_icon"><a href="#" target="_blank"> <img src="img/download_icon.png"></a></div>
+
+	<div id="homepage"><a href="https://landbigdata.github.io/cscproject/" target="_blank"><img src="img/homepage.png"></a></div>
+
+	<div id="revolvermaps"><img src="https://rf.revolvermaps.com/w/3/s/a/0/33/0/ffffff/010020/aa0000/5u0yvc9fwb5.png"></div>
+
+	    <div class="btn-group" style="z-index: 1001"> <!-- Use 401 to be between map and controls -->
+		</div>
+	  </div>
+      	<div id="logo"><img src="img/logo.png"></div>
+    </div>
+
+<script>
+function zoomTo(arg) {
+	if(arg == 'ex1') {
+		map.setView([25.8, 122.9], 7)
+	}
+	if(arg == 'ex2') {
+		map.setView([23.7, 120.9], 7) 
+	}
+	if(arg == 'ex3') {
+		map.setView([15.5, 114.7], 6)
+	}
+	if(arg == 'ex4') {
+		map.setView([28.2, 96.3], 7)
+	}
+	if(arg == 'ex5') {
+		map.setView([34.5, 79.0], 7)
+}}
+</script>
+
+<div class='map-overlay-left' id="exmpl">
+        <div class='map-overlay-inner'>
+            <div><u>放大到制定区域:</u></br>
+				<img src="img/ex1.png" onClick="zoomTo('ex1')"><br>
+				<img src="img/ex2.png" onClick="zoomTo('ex2')"><br>		
+				<img src="img/ex3.png" onClick="zoomTo('ex3')"><br>
+				<img src="img/ex4.png" onClick="zoomTo('ex4')"><br>
+				<img src="img/ex5.png" onClick="zoomTo('ex5')"><br>
+            </div>
+        </div>
+    </div>
+	<div id="showExamples">
+        Examples
+    </div>
+
+<script>
+        var dark_basemap= L.tileLayer('https://tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=husKPovN2ju7MHnvcylZj55yt4MlLylmlIqugjh6M4i46rQzm9aJpLjxlnIvSadp', {
+	    	minZoom: 3,
+            		maxZoom: 10,
+            		tms: false,
+          		attribution: 'OpenStreetMap'
+			});
+
+       var bright_basemap = L.tileLayer('https://tile.jawg.io/jawg-light/{z}/{x}/{y}.png?access-token=husKPovN2ju7MHnvcylZj55yt4MlLylmlIqugjh6M4i46rQzm9aJpLjxlnIvSadp', {
+				minZoom: 3,
+          		maxZoom: 10,
+          		tms: false,
+          		attribution: 'OpenStreetMap'
+			});
+       var ESRI = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+				minZoom: 3,
+          		maxZoom: 10,
+          		tms: false,
+          		attribution: 'ESRI'
+			});
+
+        var MapChina = L.tileLayer('map/china/{z}/{x}/{y}.png', {
+          		minZoom: 3,
+          		maxZoom: 10,
+          		tms: false,
+          		attribution: '@ Mengmeng Li'
+        		});
+	var map = L.map('map', {
+			center: [32.5, 106],
+			zoom: 4,
+			layers: [dark_basemap, MapChina, ESRI]
+	});
+
+	var base_Layers = {
+			"问题地图（暗色调）": dark_basemap,
+			"问题地图（亮色调）": bright_basemap			
+	};
+
+	var MapChina_Layers = {
+			"ESRI卫星影像": ESRI,
+			"标准地图": MapChina
+	};
+	
+
+	L.control.layers(base_Layers, MapChina_Layers, {
+			collapsed: false,
+			position: 'bottomright'}).addTo(map);
+
+
+       //Add eagle eye
+	var OSM_Map = new L.TileLayer('https://a.tile.openstreetmap.de/{z}/{x}/{y}.png', {
+                minZoom: 3,
+                maxZoom: 10,
+            });
+
+        var miniMap = new L.Control.MiniMap(OSM_Map, {
+                //Display eagle eye or not
+                toggleDisplay: true,
+		position: 'bottomleft'
+            }).addTo(map);
+
+ 	var img = document.createElement("img");
+	img.src = "img/legend.png";
+	var src = document.getElementById("x");
+	legend.appendChild(img);
+
+	var closeButton = document.createElement('div');
+	closeButton.className = 'cB';
+	legend.appendChild(closeButton);
+	closeButton.onclick = function() {
+	document.getElementById("legend").style.visibility = 'hidden';
+	document.getElementById("showLegend").style.visibility = 'visible';
+ 	}
+
+	document.getElementById("showLegend").onclick = function() {
+	document.getElementById("legend").style.visibility = 'visible';
+	document.getElementById("showLegend").style.visibility = 'hidden';
+	}
+  </script>
+</body>
+</html>
