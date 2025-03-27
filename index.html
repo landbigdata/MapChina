@@ -125,16 +125,16 @@ function zoomTo(arg) {
 	var map = L.map('map', {
 			center: [32.5, 106],
 			zoom: 4,
-			layers: [dark_basemap, MapChina, Tianditu_yingxiang, ESRI]
+			layers: [ESRI, MapChina, Tianditu_yingxiang]
 	});
 
 	var base_Layers = {
 			"问题地图示例（暗色调）": dark_basemap,
-			"问题地图示例（亮色调）": bright_basemap			
+			"问题地图示例（亮色调）": bright_basemap,
+			"卫星影像（ESRI）": ESRI
 	};
 
 	var MapChina_Layers = {
-			"卫星影像（ESRI）": ESRI,
 			"影像标注（天地图）": Tianditu_yingxiang,
 			"文字标注（天地图）": Tianditu_wenzi,
 			"标准中国地图（国家测绘地理信息局）": MapChina
