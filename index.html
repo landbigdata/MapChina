@@ -89,18 +89,25 @@ function zoomTo(arg) {
         Examples
     </div>
 
+
+<!--
+https://tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=husKPovN2ju7MHnvcylZj55yt4MlLylmlIqugjh6M4i46rQzm9aJpLjxlnIvSadp	
+https://tile.jawg.io/jawg-light/{z}/{x}/{y}.png?access-token=husKPovN2ju7MHnvcylZj55yt4MlLylmlIqugjh6M4i46rQzm9aJpLjxlnIvSadp
+-->
+
+
 <script>
-        var dark_basemap= L.tileLayer('https://tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=husKPovN2ju7MHnvcylZj55yt4MlLylmlIqugjh6M4i46rQzm9aJpLjxlnIvSadp', {
+        var dark_basemap= L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/WMTS/tile/1.0.0/Canvas_World_Dark_Gray_Base/default/default028mm/{z}/{y}/{x}/', {
 	    	minZoom: 3,
             		maxZoom: 10,
             		tms: false,
-          		attribution: 'OpenStreetMap'
+          		attribution: 'ArcGIS Online'
 			});
-       var bright_basemap = L.tileLayer('https://tile.jawg.io/jawg-light/{z}/{x}/{y}.png?access-token=husKPovN2ju7MHnvcylZj55yt4MlLylmlIqugjh6M4i46rQzm9aJpLjxlnIvSadp', {
+       var bright_basemap = L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/WMTS/tile/1.0.0/Canvas_World_Light_Gray_Base/default/default028mm/{z}/{y}/{x}/', {
 				minZoom: 3,
           		maxZoom: 10,
           		tms: false,
-          		attribution: 'OpenStreetMap'
+          		attribution: 'ArcGIS Online'
 			});
 
        var ESRI = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
