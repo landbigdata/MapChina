@@ -124,7 +124,12 @@ function zoomTo(arg) {
 			zoom: 4,
 			layers: [ESRI, MapChina, Tianditu_yingxiang]
 	});
-
+	// 限制地图显示范围（中国全境+周边缓冲区）
+	map.setMaxBounds([ 
+    	[1.4, 63],  // 西南角 
+    	[55, 141] // 东北角 
+		]);
+ 
 	var base_Layers = {
 			"问题地图示例（黑白）": dark_basemap,
 			"问题地图示例（白灰）": bright_basemap,
